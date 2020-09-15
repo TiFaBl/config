@@ -15,6 +15,7 @@ sudo apt autoremove
 
 # Symlinks
 ln -s ~/config/i3 ~/.config/i3
+ln -s ~/config/emacs/init.el ~/.emacs.d/.
 
 #git
 git config --global user.email "till.blesik@gmx.de"
