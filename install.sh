@@ -1,20 +1,20 @@
 #!/bin/bash
 
 # system basics
-sudo apt install i3 gcc make perl python3 r-base git curl wget zsh emacs shellcheck markdown ripgrep fd-find docker.io -y;
+sudo apt install i3 gcc make cmake perl python3 python3-venv pipenv flake8 python3-googleapi r-base git curl wget zsh emacspeak shellcheck markdown ripgrep fd-find docker.io -y;
 
 # cleanup
 sudo apt autoremove
 
 # DOOM emacs
 #https://github.com/hlissner/doom-emacs
-git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-~/.emacs.d/bin/doom install
+# git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+# ~/.emacs.d/bin/doom install
 
 # Copy configs
 
 # Symlinks
-
+ln -s ~/config/i3 ~/.config/i3
 
 #git
 git config --global user.email "till.blesik@gmx.de"
@@ -32,3 +32,6 @@ git config --global core.excludesfile ~/.gitignore_global
 # create directory for cloud
 #sudo mkdir /mnt/cloud
 #sudo chown tfb:tfb /mnt/cloud
+
+# emacspeak
+# http://tvraman.github.io/emacspeak/manual/Installation.html#Installation

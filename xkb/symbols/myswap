@@ -1,0 +1,6 @@
+partial modifier_keys
+xkb_symbols "rshiftCaps_CapsControl" {
+    replace key <RTSH>  { [ Caps_Lock ] };
+    replace key <CAPS> { [ Control_L ] };
+    modifier_map Control { <CAPS> };
+};
