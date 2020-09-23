@@ -21,7 +21,7 @@
  '(elpy-modules
    (quote
     (elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults)))
- '(espeak-default-speech-rate 250)
+ '(espeak-default-speech-rate 320)
  '(org-hierarchical-todo-statistics nil t)
  '(package-selected-packages
    (quote
@@ -66,7 +66,7 @@
 (setq org-todo-keyword-faces
       '(("IDEA" . (:foreground "GoldenRod" :weight bold))
         ("STRT" . (:foreground "OrangeRed" :weight bold))
-        ("WAIT" . (:foreground "coral" :weight bold)) 
+        ("WAIT" . (:foreground "coral" :weight bold))
         ("CANCELED" . (:foreground "LimeGreen" :weight bold))
         ("DELEGATED" . (:foreground "LimeGreen" :weight bold))
         ("SOMEDAY" . (:foreground "LimeGreen" :weight bold))
@@ -114,15 +114,19 @@
   (setq elpy-rpc-virtualenv-path 'default)
   (elpy-enable))
 
-;;Editor
-; turn line numbers on
-;; (when (version<= "26.0.50" emacs-version )
-;;   (global-display-line-numbers-mode))
-(put 'narrow-to-region 'disabled nil)
-(put 'narrow-to-page 'disabled nil)
-
 ;; EVIL
 (use-package evil
   :ensure t
   :config
   (evil-mode 1))
+
+;;Editor / Globals
+; turn line numbers on
+;; (when (version<= "26.0.50" emacs-version )
+;;   (global-display-line-numbers-mode))
+(put 'narrow-to-region 'disabled nil)
+(put 'narrow-to-page 'disabled nil)
+;; Make F6 cycle through windows (in accordance to Windows and Office) while having emacspeak tell the names
+(global-set-key (kbd "<f6>") 'other-window)
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+(ido-mode 1)
