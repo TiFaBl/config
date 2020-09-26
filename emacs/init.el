@@ -8,6 +8,7 @@
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 (require 'use-package)
+(setq use-package-always-ensure t)
 
 ;(defcustom espeak-default-speech-rate 250)
 (custom-set-variables
@@ -25,7 +26,7 @@
  '(org-hierarchical-todo-statistics nil t)
  '(package-selected-packages
    (quote
-    (projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))))
+    (helpful ido-completing-read+ ivy all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -43,15 +44,22 @@
   (when (fboundp 'horizontal-scroll-bar-mode)
     (horizontal-scroll-bar-mode -1))
 (load-theme 'deeper-blue t)
+;; Pretty icons
+(use-package all-the-icons)
+;; Use DOOM modeline to prettify it a bit
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
 
 ;; which-key to display the options for keys/chords
  (use-package which-key
    :ensure t
+   :diminish which-key-mode
    :config
    (which-key-mode 1))
 
 
-;;ORG
+;;org
 (setq org-directory "~/org/")
 (setq org-agenda-files '("~/org/"))
 (setq org-hierarchical-todo-statistics nil)
@@ -83,7 +91,18 @@
             (lambda ()
               (evil-org-set-key-theme)))
   (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys))
+  (evil-org-agenda-set-keys)
+  )
+
+(add-hook 'org-mode-hook
+ (lambda ()
+   (evil-org-mode)
+   ;; Custom mappings
+   (evil-define-key 'motion org-agenda-mode-map
+     ;; motion
+     "j" 'evil-next-line
+     "k" 'evil-previous-line
+     )))
 
 ;; MAGIT
  (use-package magit
@@ -107,6 +126,15 @@
   :ensure t
   :init (global-flycheck-mode))
 
+;; Helpful to improve the help buffer
+(use-package helpful
+  :bind (
+	 ("C-h f" . #'helpful-callable)
+	 ("C-h v" . #'helpful-variable)
+	 ("C-h k" . #'helpful-key)
+	 ))
+  
+
 ;; Python
 (use-package elpy
   :ensure t
@@ -129,4 +157,35 @@
 ;; Make F6 cycle through windows (in accordance to Windows and Office) while having emacspeak tell the names
 (global-set-key (kbd "<f6>") 'other-window)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-(ido-mode 1)
+
+;; Completion
+(use-package ido
+  :ensure t
+  :config
+  (setq ido-everywhere t
+	ido-enable-flex-matching t)
+  (ido-mode 1))
+(use-package ido-completing-read+
+  :ensure t
+  :config
+  (ido-ubiquitous-mode 1))
+;;(use-package ivy
+;;   :diminish
+;;   :bind (("C-s" . swiper)
+;;          :map ivy-minibuffer-map
+;;          ("TAB" . ivy-alt-done)	
+;;          ("C-l" . ivy-alt-done)
+;;          ("C-j" . ivy-next-line)
+;;          ("C-k" . ivy-previous-line)
+;;          :map ivy-switch-buffer-map
+;;          ("C-k" . ivy-previous-line)
+;;          ("C-l" . ivy-done)
+;;          ("C-d" . ivy-switch-buffer-kill)
+;;          :map ivy-reverse-i-search-map
+;;         ("C-k" . ivy-previous-line)
+;;          ("C-d" . ivy-reverse-i-search-kill))
+;;   :config
+;;   (ivy-mode 1))
+
+(provide 'init)
+;;;
