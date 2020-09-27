@@ -182,13 +182,27 @@
 (use-package ido
   :ensure t
   :config
-  (setq ido-everywhere t
-	ido-enable-flex-matching t)
+  (setq ido-enable-prefix nil
+	ido-enable-flex-matching t
+	ido-create-new-buffer 'always
+	ido-use-filename-at-point 'guess
+	ido-max-prospects 10
+	ido-default-file-method 'selected-window
+	ido-auto-merge-work-directories-length nil)
   (ido-mode 1))
 (use-package ido-completing-read+
   :ensure t
   :config
+  (ido-everywhere 1)
   (ido-ubiquitous-mode 1))
+;; flx-ido - https://github.com/lewang/flx
+(use-package flx-ido
+  :ensure t
+  :config
+  (flx-ido-mode 1)
+  ;; disable ido faces to see flx highlights
+  (setq ido-use-faces nil))
+
 ;;(use-package ivy
 ;;   :diminish
 ;;   :bind (("C-s" . swiper)
