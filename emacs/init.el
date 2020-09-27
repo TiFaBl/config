@@ -23,10 +23,12 @@
    (quote
     (elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults)))
  '(espeak-default-speech-rate 320)
+ '(gc-cons-threshold 20000000)
  '(org-hierarchical-todo-statistics nil t)
  '(package-selected-packages
    (quote
-    (helpful ido-completing-read+ ivy all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))))
+    (evil-collection flx-ido smex helpful ido-completing-read+ ivy all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package)))
+ '(sentence-end-double-space nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
