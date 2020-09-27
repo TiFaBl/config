@@ -139,8 +139,11 @@
 (use-package helpful
   :bind (
 	 ("C-h f" . #'helpful-callable)
+	 ("C-h F" . #'helpful-function)
 	 ("C-h v" . #'helpful-variable)
+	 ("C-h C" . #'helpful-command)
 	 ("C-h k" . #'helpful-key)
+	 ("C-c C-d" . #'helpful-at-point)
 	 ))
   
 
