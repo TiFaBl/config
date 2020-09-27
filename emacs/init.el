@@ -184,6 +184,11 @@
 ;; Make ESC quit stuff
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
+;; SMEX for smart M-x - https://github.com/nonsequitur/smex
+(use-package smex
+  :ensure t
+  :bind ("M-x" . smex))
+
 ;; Completion
 (use-package ido
   :ensure t
