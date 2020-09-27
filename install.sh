@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # system basics
-sudo apt install i3 gcc make cmake perl python3 python3-venv pipenv flake8 python3-googleapi r-base git curl wget zsh emacspeak shellcheck markdown ripgrep fd-find docker.io -y;
+sudo apt install i3 gcc make cmake perl python3 python3-venv pipenv flake8 python3-googleapi r-base git curl wget zsh emacspeak shellcheck markdown texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra ripgrep fd-find docker.io -y;
 
 # cleanup
 sudo apt autoremove
