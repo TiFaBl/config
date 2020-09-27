@@ -168,14 +168,20 @@
 ;; TODO: EVIL Collection for example for eww
 ;; https://github.com/emacs-evil/evil-collection
 
+
 ;;Editor / Globals
 ; turn line numbers on
 ;; (when (version<= "26.0.50" emacs-version )
 ;;   (global-display-line-numbers-mode))
 (put 'narrow-to-region 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
+;; I want to write right words in text-mode and prog-mode
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+;; Global Keybindings
 ;; Make F6 cycle through windows (in accordance to Windows and Office) while having emacspeak tell the names
 (global-set-key (kbd "<f6>") 'other-window)
+;; Make ESC quit stuff
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;; Completion
