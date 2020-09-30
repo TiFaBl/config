@@ -243,5 +243,9 @@
 ;;   :config
 ;;   (ivy-mode 1))
 
+;; Hopefully a temporary fix to avoid the missing emacspeak-handle-action-at-point issue
+;; https://github.com/tvraman/emacspeak/issues/47
+;; (load-file "/home/tfb/emacspeak/current/lisp/emacspeak-wizards.el")
+ 
 (provide 'init)
 ;;;
