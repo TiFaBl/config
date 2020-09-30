@@ -1,3 +1,6 @@
+(load-file "/home/tfb/emacspeak/r52/lisp/emacspeak-setup.el")
+;; (load-file "/home/tfb/emacspeak/current/lisp/emacspeak-setup.el")
+
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
