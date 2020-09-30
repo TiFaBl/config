@@ -215,6 +215,15 @@
   (flx-ido-mode 1)
   ;; disable ido faces to see flx highlights
   (setq ido-use-faces nil))
+(use-package company
+  :bind ( ("M-<tab>" . company-select-next)
+	 :map company-active-map
+         ("C-j" . company-select-next)
+         ("C-k" . company-select-previous))
+  :config
+  ;; (setq company-idle-delay 0.1)
+  (emacspeak-company-setup)
+  (global-company-mode t))
 
 ;;(use-package ivy
 ;;   :diminish
