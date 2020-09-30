@@ -1,7 +1,28 @@
 #!/bin/bash
 
+# more recent emacs versions
+# sudo add-apt-repository ppa:kelleyk/emacs
+
+# activate all debs and their sources
+sudo sed -i -- 's/#deb-src/deb-src/g' /etc/apt/sources.list 
+sudo sed -i -- 's/# deb-src/deb-src/g' /etc/apt/sources.list
+sudo sed -i -- 's/#deb/deb/g' /etc/apt/sources.list
+sudo sed -i -- 's/# deb/deb/g' /etc/apt/sources.list
+
 # system basics
 sudo apt install i3 gcc make cmake perl python3 python3-venv pipenv flake8 python3-googleapi r-base git curl wget zsh emacspeak shellcheck markdown texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra ripgrep fd-find docker.io -y;
+# emacs 
+# https://www.gnu.org/software/emacs/manual/html_node/efaq/Installing-Emacs.html
+sudo apt build-deb emacs
+sudo apt install mailutils
+wget http://ftp.halifax.rwth-aachen.de/gnu/emacs/emacs-27.1.tar.gz
+# TODO adjust script to dynamically download, ./configure, make, sudo make install
+# Emacspeak
+# https://tvraman.github.io/emacspeak/manual/Quick-Installation.html
+sudo apt install espeak-ng espeak-ng-espeak libespeak-ng-dev tcl-dev tclx-8.4
+git clone https://github.com/tvraman/emacspeak
+# TODO cd emacspeak, make config, make, cd servers/espeak, make
+export DTK_PROGRAM=espeak
 
 # cleanup
 sudo apt autoremove
