@@ -4,9 +4,9 @@
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
+;; (package-initialize)
 ;; refresh manually to avoid waiting time at every startup
-;;(package-refresh-contents)
+(package-refresh-contents)
 
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
