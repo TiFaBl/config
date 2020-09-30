@@ -18,8 +18,8 @@ ln -s ~/config/i3 ~/.config/i3
 ln -s ~/config/emacs/init.el ~/.emacs.d/.
 
 #git
-git config --global user.email "till.blesik@gmx.de"
-git config --global user.name "tfb"
+git config --global user.email "mail@mailserver.tld"
+git config --global user.name "GitUserName"
 git config --global core.excludesfile ~/.gitignore_global
 
 # oh-my-zsh
