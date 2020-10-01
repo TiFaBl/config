@@ -26,7 +26,7 @@
  '(gc-cons-threshold 20000000)
  '(org-hierarchical-todo-statistics nil t)
  '(package-selected-packages
-   '(evil-collection flx-ido smex helpful ido-completing-read+ ivy all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))
+   '(ido evil-collection flx-ido smex helpful ido-completing-read+ all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))
  '(sentence-end-double-space nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
