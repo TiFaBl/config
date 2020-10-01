@@ -222,7 +222,8 @@
   :config
   ;; (setq company-idle-delay 0.1)
   (emacspeak-company-setup)
-  (global-company-mode t))
+  ;;(global-company-mode t)
+  )
 
 ;;(use-package ivy
 ;;   :diminish
