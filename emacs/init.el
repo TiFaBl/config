@@ -224,8 +224,9 @@
          ("C-k" . company-select-previous))
   :config
   ;; (setq company-idle-delay 0.1)
+  ;; (company-mode 1)
+  (global-company-mode t)
   (emacspeak-company-setup)
-  ;;(global-company-mode t)
   )
 
 ;;(use-package ivy
