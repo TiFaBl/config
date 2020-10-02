@@ -242,24 +242,6 @@
 ;; (use-package flyspell-correct-popup
 ;;   :after flyspell-correct)
 
-;; ;;(use-package ivy
-;;   :diminish
-;;   :bind (("C-s" . swiper)
-;;          :map ivy-minibuffer-map
-;;          ("TAB" . ivy-alt-done)	
-;;          ("C-l" . ivy-alt-done)
-;;          ("C-j" . ivy-next-line)
-;;          ("C-k" . ivy-previous-line)
-;;          :map ivy-switch-buffer-map
-;;          ("C-k" . ivy-previous-line)
-;;          ("C-l" . ivy-done)
-;;          ("C-d" . ivy-switch-buffer-kill)
-;;          :map ivy-reverse-i-search-map
-;;         ("C-k" . ivy-previous-line)
-;;          ("C-d" . ivy-reverse-i-search-kill))
-;;   :config
-;;   (ivy-mode 1))
-
 ;; Hopefully a temporary fix to avoid the missing emacspeak-handle-action-at-point issue
 ;; https://github.com/tvraman/emacspeak/issues/47
 ;; (load-file "/home/tfb/emacspeak/current/lisp/emacspeak-wizards.el")
