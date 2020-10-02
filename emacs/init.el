@@ -229,7 +229,14 @@
   (emacspeak-company-setup)
   )
 
-;;(use-package ivy
+;; Correction
+(use-package flyspell-correct
+  :after flyspell
+  :bind (:map flyspell-mode-map ("C-;" . flyspell-correct-wrapper)))
+;; (use-package flyspell-correct-popup
+;;   :after flyspell-correct)
+
+;; ;;(use-package ivy
 ;;   :diminish
 ;;   :bind (("C-s" . swiper)
 ;;          :map ivy-minibuffer-map
