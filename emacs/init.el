@@ -6,6 +6,7 @@
 
 (load-file "/home/tfb/emacspeak/r52/lisp/emacspeak-setup.el")
 ;; (load-file "/home/tfb/emacspeak/current/lisp/emacspeak-setup.el")
+(dtk-set-rate 275)
 
 (require 'package)
 (add-to-list 'package-archives
@@ -19,7 +20,6 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;(defcustom espeak-default-speech-rate 250)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
