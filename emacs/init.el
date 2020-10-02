@@ -71,11 +71,14 @@
 (setq org-directory "~/org/")
 (setq org-agenda-files '("~/org/"))
 (setq org-hierarchical-todo-statistics nil)
-(define-key global-map "\C-ca" 'org-agenda)
+(setq org-refile-targets '((org-agenda-files . (:maxlevel . 3))))
+(setq org-default-notes-file (concat org-directory "/capture.org"))
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
 
 (setq org-todo-keywords
       '(
-        (sequence "IDEA(i)" "TODO(t)" "|" "STRT(s)" "WAIT(w)" "|" "DONE(d)")
+        (sequence "IDEA(i)" "TODO(t)" "|" "STRT(s)" "WAIT(w)" "|" "DONE(!d)")
         (sequence "|" "CANCELED(c@)" "DELEGATED(l@)" "SOMEDAY(f)")
         ))
 
