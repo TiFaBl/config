@@ -1,3 +1,9 @@
+;;; package --- Summary
+;;; my init file
+;;; Commentary:
+;;, this will be moved to literate soon
+;;; Code:
+
 (load-file "/home/tfb/emacspeak/r52/lisp/emacspeak-setup.el")
 ;; (load-file "/home/tfb/emacspeak/current/lisp/emacspeak-setup.el")
 
