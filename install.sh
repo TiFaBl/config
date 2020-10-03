@@ -1,4 +1,5 @@
 #!/bin/bash
+# TODO align configs to XDG standards: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 
 # more recent emacs versions
 # sudo add-apt-repository ppa:kelleyk/emacs
@@ -10,7 +11,7 @@ sudo sed -i -- 's/#deb/deb/g' /etc/apt/sources.list
 sudo sed -i -- 's/# deb/deb/g' /etc/apt/sources.list
 
 # system basics
-sudo apt install i3 gcc make cmake perl python3 python3-venv pipenv flake8 python3-googleapi r-base git curl wget mplayer zsh emacspeak shellcheck markdown texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra ripgrep fd-find docker.io -y;
+sudo apt install i3 gcc make cmake perl r-recommended python3 python3-venv pipenv flake8 python3-googleapi r-base git curl wget mplayer zsh emacspeak shellcheck markdown texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra ripgrep fd-find docker.io -y;
 # emacs 
 # https://www.gnu.org/software/emacs/manual/html_node/efaq/Installing-Emacs.html
 sudo apt build-deb emacs
