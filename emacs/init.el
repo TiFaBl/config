@@ -81,6 +81,8 @@
 (setq org-default-notes-file (concat org-directory "/capture.org"))
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c e") 'eww)
+(global-set-key (kbd "C-c m") 'gnus)
 
 (setq org-todo-keywords
       '(
