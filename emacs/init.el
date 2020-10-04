@@ -172,6 +172,7 @@
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
   :config
+  (evil-define-key 'normal 'global "ä" 'evil-execute-macro)
   (evil-mode 1))
 
 (use-package evil-collection
@@ -249,6 +250,6 @@
 ;; Hopefully a temporary fix to avoid the missing emacspeak-handle-action-at-point issue
 ;; https://github.com/tvraman/emacspeak/issues/47
 ;; (load-file "/home/tfb/emacspeak/current/lisp/emacspeak-wizards.el")
- 
+
 (provide 'init)
 ;;;
