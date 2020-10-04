@@ -115,6 +115,8 @@
  (lambda ()
    (evil-org-mode)
    ;; Custom mappings
+   (evil-define-key 'normal org-mode-map
+     (kbd "C-c ä") 'org-mark-subtree)
    (evil-define-key 'motion org-agenda-mode-map
      ;; motion
      "j" 'evil-next-line
