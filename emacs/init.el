@@ -30,9 +30,9 @@
  '(elpy-modules
    '(elpy-module-company elpy-module-eldoc elpy-module-folding elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults))
  '(gc-cons-threshold 20000000)
- '(org-hierarchical-todo-statistics nil t)
+ '(org-hierarchical-todo-statistics nil)
  '(package-selected-packages
-   '(company-quickhelp ess flyspell-correct-ido flyspell-correct ido evil-collection flx-ido smex helpful ido-completing-read+ all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))
+   '(org-bullets company-quickhelp ess flyspell-correct-ido flyspell-correct ido evil-collection flx-ido smex helpful ido-completing-read+ all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))
  '(sentence-end-double-space nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -112,6 +112,10 @@
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys)
   )
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "▶" "✿" "◆" "✜" "✸"))
+  :hook (org-mode . org-bullets-mode))
 
 (add-hook 'org-mode-hook
  (lambda ()
