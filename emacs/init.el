@@ -163,6 +163,7 @@
   :ensure t
   :init
   (setq elpy-rpc-virtualenv-path 'default)
+  :config
   (elpy-enable))
 
 ;; ESS
