@@ -32,7 +32,7 @@
  '(gc-cons-threshold 20000000)
  '(org-hierarchical-todo-statistics nil t)
  '(package-selected-packages
-   '(ess flyspell-correct-ido flyspell-correct ido evil-collection flx-ido smex helpful ido-completing-read+ all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))
+   '(company-quickhelp ess flyspell-correct-ido flyspell-correct ido evil-collection flx-ido smex helpful ido-completing-read+ all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))
  '(sentence-end-double-space nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -252,6 +252,12 @@
   (global-company-mode t)
   (emacspeak-company-setup)
   )
+(use-package company-quickhelp
+  :ensure t
+  :bind (:map company-active-map
+	      ("C-c d" . company-quickhelp-manual-begin))
+  :config
+  (company-quickhelp-mode 1))
 
 ;; Correction
 (use-package flyspell-correct
