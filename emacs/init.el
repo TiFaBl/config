@@ -205,6 +205,12 @@
 (global-set-key (kbd "<f6>") 'other-window)
 ;; Make ESC quit stuff
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+;; make folding keybindings more usable
+(add-hook 'hs-minor-mode-hook
+	  (lambda ()
+	    (define-key hs-minor-mode-map (kbd "C-<tab>") 'hs-toggle-hiding)
+	    (define-key hs-minor-mode-map (kbd "C-c ä") (lookup-key hs-minor-mode-map (kbd "C-c @")))
+	    ))
 
 ;; SMEX for smart M-x - https://github.com/nonsequitur/smex
 (use-package smex
