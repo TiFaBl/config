@@ -197,7 +197,9 @@
 (put 'narrow-to-page 'disabled nil)
 ;; I want to write right words in text-mode and prog-mode
 (add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+;; add modes to the prog-mode-hook
+(dolist (mode '(flyspell-prog-mode hs-minor-mode))
+  (add-hook 'prog-mode-hook mode))
 ;; Global Keybindings
 ;; Make F6 cycle through windows (in accordance to Windows and Office) while having emacspeak tell the names
 (global-set-key (kbd "<f6>") 'other-window)
