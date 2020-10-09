@@ -79,10 +79,6 @@
 (setq org-hierarchical-todo-statistics nil)
 (setq org-refile-targets '((org-agenda-files . (:maxlevel . 3))))
 (setq org-default-notes-file (concat org-directory "/capture.org"))
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c c") 'org-capture)
-(global-set-key (kbd "C-c e") 'eww)
-(global-set-key (kbd "C-c m") 'gnus)
 
 (setq org-todo-keywords
       '(
@@ -199,16 +195,31 @@
 ;;   (global-display-line-numbers-mode))
 (put 'narrow-to-region 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
+;; let me replace marked regions by just typing
+(setq delete-selection-mode t)
 ;; I want to write right words in text-mode and prog-mode
 (add-hook 'text-mode-hook 'flyspell-mode)
 ;; add modes to the prog-mode-hook
 (dolist (mode '(flyspell-prog-mode hs-minor-mode))
   (add-hook 'prog-mode-hook mode))
+(add-hook 'prog-mode-hook
+	  (lambda()
+	    (electric-pair-mode t)))
 ;; Global Keybindings
 ;; Make F6 cycle through windows (in accordance to Windows and Office) while having emacspeak tell the names
 (global-set-key (kbd "<f6>") 'other-window)
 ;; Make ESC quit stuff
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+;; Create my own keymap
+(define-prefix-command 'tools-map)
+(global-set-key (kbd "C-t") 'tools-map)
+(define-key tools-map (kbd "e") 'eww)
+(define-key tools-map (kbd "g") 'magit)
+(define-key tools-map (kbd "m") 'mu4e)
+(define-key tools-map (kbd "n") 'gnus)
+(define-key tools-map (kbd "p") 'projectile-command-map)
 ;; make folding keybindings more usable
 (add-hook 'hs-minor-mode-hook
 	  (lambda ()
@@ -248,14 +259,15 @@
 (use-package company
   :bind ( ("M-<tab>" . company-select-next)
 	 :map company-active-map
-         ("C-j" . company-select-next)
-         ("C-k" . company-select-previous))
+         ("C-n" . company-select-next)
+         ("C-p" . company-select-previous)
+	 )
   :config
   ;; (setq company-idle-delay 0.1)
   ;; (company-mode 1)
   (global-company-mode t)
-  (emacspeak-company-setup)
-  )
+  (emacspeak-company-setup))
+
 (use-package company-quickhelp
   :ensure t
   :bind (:map company-active-map
