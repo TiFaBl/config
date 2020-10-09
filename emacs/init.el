@@ -213,6 +213,14 @@
 (add-hook 'prog-mode-hook
 	  (lambda()
 	    (electric-pair-mode t)))
+;; Make text movable with M-<up> or <down>
+(use-package move-text
+  :ensure t
+  :config
+  ;; (move-text-default-keybindings) is resulting in an error, therefore i am doing the bindings myself
+  (global-set-key (kbd "M-<up>") 'move-text-up)
+  (global-set-key (kbd "M-<down>") 'move-text-down)
+  )
 ;; Global Keybindings
 ;; Make F6 cycle through windows (in accordance to Windows and Office) while having emacspeak tell the names
 (global-set-key (kbd "<f6>") 'other-window)
