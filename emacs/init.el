@@ -32,7 +32,7 @@
  '(gc-cons-threshold 20000000)
  '(org-hierarchical-todo-statistics nil)
  '(package-selected-packages
-   '(expand-region org-bullets company-quickhelp ess flyspell-correct-ido flyspell-correct ido evil-collection flx-ido smex helpful ido-completing-read+ all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))
+   '(move-text expand-region org-bullets company-quickhelp ess flyspell-correct-ido flyspell-correct ido evil-collection flx-ido smex helpful ido-completing-read+ all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))
  '(sentence-end-double-space nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
