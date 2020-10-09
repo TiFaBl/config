@@ -286,5 +286,47 @@
 ;; https://github.com/tvraman/emacspeak/issues/47
 ;; (load-file "/home/tfb/emacspeak/current/lisp/emacspeak-wizards.el")
 
+;; mu4e
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+(require 'mu4e)
+(setq mu4e-change-filenames-when-moving t)
+(setq mu4e-maildir "~/.mail")
+(setq mu4e-get-mail-command "mbsync -a")
+(setq mu4e-update-interval 300)
+(setq mu4e-context-policy 'pick-first)
+(setq mu4e-headers-fields
+      '((:from . 22)
+	(:subject . 100)
+	(:human-date . 12)
+	(:flags . 6)
+        (:mailing-list . 10)))
+
+
+
+(defun my-make-mu4e-context (name address signature)
+    "Return a mu4e context named NAME with :match-func matching
+  its ADDRESS in From or CC fields of the parent message. The
+  context's `user-mail-address' is set to ADDRESS and its
+  `mu4e-compose-signature' to SIGNATURE."
+    (lexical-let ((addr-lex address))
+      (make-mu4e-context :name name
+                         :vars `((user-mail-address . ,address)
+                                 (mu4e-compose-signature . ,signature))
+                         :match-func
+                         (lambda (msg)
+                           (when msg
+                             (or (mu4e-message-contact-field-matches msg :to addr-lex)
+                                 (mu4e-message-contact-field-matches msg :cc addr-lex)))))))
+
+(setq mu4e-contexts
+        `( ,(my-make-mu4e-context "TillGMX" "till.blesik@gmx.de"
+                                  "Mit freundlichen Grüßen,\n Till")
+           ,(my-make-mu4e-context "GMail" "till.blesik@gmail.com"
+                                  "Mit freundlichen Grüßen,\n Till")
+           ,(my-make-mu4e-context "ESCP" "tblesik@escp.eu"
+                                  "Best regards,\n Till")
+	   ,(my-make-mu4e-context "spirit" "ntm.greattfbspirit@gmx.de"
+                                  "")))
+
 (provide 'init)
 ;;;
