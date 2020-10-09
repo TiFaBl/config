@@ -79,6 +79,9 @@
 (setq org-hierarchical-todo-statistics nil)
 (setq org-refile-targets '((org-agenda-files . (:maxlevel . 3))))
 (setq org-default-notes-file (concat org-directory "/capture.org"))
+(setq org-refile-use-outline-path 'file)
+(setq org-outline-path-complete-in-steps nil)
+
 
 (setq org-todo-keywords
       '(
