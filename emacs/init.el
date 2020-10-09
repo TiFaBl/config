@@ -227,11 +227,15 @@
 	    (define-key hs-minor-mode-map (kbd "C-c ä") (lookup-key hs-minor-mode-map (kbd "C-c @")))
 	    ))
 
+(use-package expand-region
+  :ensure t
+  :bind ("C-#" . er/expand-region))
+
+
 ;; SMEX for smart M-x - https://github.com/nonsequitur/smex
 (use-package smex
   :ensure t
   :bind ("M-x" . smex))
-
 ;; Completion
 (use-package ido
   :ensure t
