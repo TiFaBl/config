@@ -32,7 +32,7 @@
  '(gc-cons-threshold 20000000)
  '(org-hierarchical-todo-statistics nil)
  '(package-selected-packages
-   '(org-bullets company-quickhelp ess flyspell-correct-ido flyspell-correct ido evil-collection flx-ido smex helpful ido-completing-read+ all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))
+   '(expand-region org-bullets company-quickhelp ess flyspell-correct-ido flyspell-correct ido evil-collection flx-ido smex helpful ido-completing-read+ all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))
  '(sentence-end-double-space nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -95,35 +95,40 @@
         ("SOMEDAY" . (:foreground "LimeGreen" :weight bold))
         ))
 
-;; and some evil-org to go along with it
-;; for config inspiration, go to https://github.com/Somelauw/evil-org-mode/blob/master/doc/example_config.el
-(use-package evil-org
-  :ensure t
-  :after org
-  :config
-  (add-hook 'org-mode-hook 'evil-org-mode)
-  (add-hook 'evil-org-mode-hook
-            (lambda ()
-              (evil-org-set-key-theme)))
-  (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys)
-  )
+;; ;; and some evil-org to go along with it
+;; ;; for config inspiration, go to https://github.com/Somelauw/evil-org-mode/blob/master/doc/example_config.el
+;; (use-package evil-org
+;;   :ensure t
+;;   :after org
+;;   :config
+;;   (add-hook 'org-mode-hook 'evil-org-mode)
+;;   (add-hook 'evil-org-mode-hook
+;;             (lambda ()
+;; 	      ;; Custom mappings
+;; 	      (evil-define-key 'normal org-mode-map
+;; 		(kbd "C-c ä") 'org-mark-subtree)
+;; 	      (evil-define-key 'motion org-agenda-mode-map
+;; 		;; motion
+;; 		"j" 'evil-next-line
+;; 		"k" 'evil-previous-line)
+;; 	      ;; set key theme
+;;               (evil-org-set-key-theme)
+;; 	      ;; set virtual indentation
+;; 	      (org-indent-mode 1)))
+;;   (require 'evil-org-agenda)
+;;   (evil-org-agenda-set-keys)
+;;   )
+
+
 (use-package org-bullets
   :custom
   (org-bullets-bullet-list '("◉" "○" "▶" "✿" "◆" "✜" "✸"))
   :hook (org-mode . org-bullets-mode))
 
 (add-hook 'org-mode-hook
- (lambda ()
-   (evil-org-mode)
-   ;; Custom mappings
-   (evil-define-key 'normal org-mode-map
-     (kbd "C-c ä") 'org-mark-subtree)
-   (evil-define-key 'motion org-agenda-mode-map
-     ;; motion
-     "j" 'evil-next-line
-     "k" 'evil-previous-line
-     )))
+	  (lambda ()
+	    (org-indent-mode t)
+   ))
 
 ;; MAGIT
  (use-package magit
@@ -170,21 +175,21 @@
 (use-package ess
   :ensure t)
 
-;; EVIL
-(use-package evil
-  :ensure t
-  :init
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
-  :config
-  (evil-define-key 'normal 'global "ä" 'evil-execute-macro)
-  (evil-mode 1))
+;; ;; EVIL
+;; (use-package evil
+;;   :ensure t
+;;   :init
+;;   (setq evil-want-integration t)
+;;   (setq evil-want-keybinding nil)
+;;   :config
+;;   (evil-define-key 'normal 'global "ä" 'evil-execute-macro)
+;;   (evil-mode 1))
 
-(use-package evil-collection
-  :after evil
-  :ensure t
-  :config
-  (evil-collection-init))
+;; (use-package evil-collection
+;;   :after evil
+;;   :ensure t
+;;   :config
+;;   (evil-collection-init))
 ;; TODO: EVIL Collection for example for eww
 ;; https://github.com/emacs-evil/evil-collection
 
