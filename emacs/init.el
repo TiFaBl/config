@@ -41,6 +41,10 @@
  ;; If there is more than one, they won't work right.
  )
 
+;; Create my own keymap
+(define-prefix-command 'tools-map)
+(global-set-key (kbd "C-t") 'tools-map)
+
 ;; UI
 (unless (eq window-system 'ns)
   (menu-bar-mode -1))
@@ -145,6 +149,7 @@
   :ensure t
   :bind-keymap
   ("C-c p" . projectile-command-map)
+  ("C-t p" . projectile-command-map)
   :config
   (projectile-mode 1))
 
@@ -228,14 +233,14 @@
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
-;; Create my own keymap
-(define-prefix-command 'tools-map)
-(global-set-key (kbd "C-t") 'tools-map)
 (define-key tools-map (kbd "e") 'eww)
 (define-key tools-map (kbd "g") 'magit)
 (define-key tools-map (kbd "m") 'mu4e)
 (define-key tools-map (kbd "n") 'gnus)
-(define-key projectile-mode-map (kbd "C-t p") 'projectile-command-map)
+;; timing not right, therefore moved to projectile load
+;; (with-eval-after-load 'projectile
+;;     (define-key projectile-mode-map (kbd "C-t p") 'projectile-command-map))
+
 ;; make folding keybindings more usable
 (add-hook 'hs-minor-mode-hook
 	  (lambda ()
