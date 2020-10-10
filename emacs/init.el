@@ -226,13 +226,21 @@
   (global-set-key (kbd "M-<up>") 'move-text-up)
   (global-set-key (kbd "M-<down>") 'move-text-down)
   )
+
 ;; Global Keybindings
 ;; Make F6 cycle through windows (in accordance to Windows and Office) while having emacspeak tell the names
 (global-set-key (kbd "<f6>") 'other-window)
 ;; Make ESC quit stuff
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+;; orgmode bindings
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
+
+;; bindings for german layout
+(global-set-key (kbd "M-+") 'backward-paragraph)
+(global-set-key (kbd "M-#") 'forward-paragraph)
+
+;; provide tools on my tools kdymap
 (define-key tools-map (kbd "e") 'eww)
 (define-key tools-map (kbd "g") 'magit)
 (define-key tools-map (kbd "m") 'mu4e)
