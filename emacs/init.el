@@ -235,7 +235,7 @@
 (define-key tools-map (kbd "g") 'magit)
 (define-key tools-map (kbd "m") 'mu4e)
 (define-key tools-map (kbd "n") 'gnus)
-(define-key tools-map (kbd "p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-t p") 'projectile-command-map)
 ;; make folding keybindings more usable
 (add-hook 'hs-minor-mode-hook
 	  (lambda ()
