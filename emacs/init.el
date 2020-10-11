@@ -41,7 +41,10 @@
  ;; If there is more than one, they won't work right.
  )
 
-;; Create my own keymap
+;;use larger font
+(set-face-attribute 'default nil :height 140)
+
+;; Create my own keymapxs
 (define-prefix-command 'tools-map)
 (global-set-key (kbd "C-t") 'tools-map)
 
