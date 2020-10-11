@@ -32,7 +32,7 @@
  '(gc-cons-threshold 20000000)
  '(org-hierarchical-todo-statistics nil)
  '(package-selected-packages
-   '(move-text expand-region org-bullets company-quickhelp ess flyspell-correct-ido flyspell-correct ido evil-collection flx-ido smex helpful ido-completing-read+ all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))
+   '(vterm move-text expand-region org-bullets company-quickhelp ess flyspell-correct-ido flyspell-correct ido evil-collection flx-ido smex helpful ido-completing-read+ all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))
  '(sentence-end-double-space nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -253,6 +253,8 @@
 (define-key tools-map (kbd "g") 'magit)
 (define-key tools-map (kbd "m") 'mu4e)
 (define-key tools-map (kbd "n") 'gnus)
+(define-key tools-map (kbd "s") 'eshell)
+
 ;; timing not right, therefore moved to projectile load
 ;; (with-eval-after-load 'projectile
 ;;     (define-key projectile-mode-map (kbd "C-t p") 'projectile-command-map))
