@@ -401,7 +401,7 @@
           ,(make-mu4e-context
             :name "spirit"
 	    :enter-func (lambda () (mu4e-message "Entering spirit"))
-            :match-funcq
+            :match-func
 	    (lambda (msg)
 	      (when msg
 		(or
