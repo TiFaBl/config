@@ -347,7 +347,7 @@
 (setq mu4e-context-policy 'pick-first)
 (setq mu4e-headers-fields
       '((:from . 22)
-	(:subject . 100)
+	(:subject . 60)
 	(:human-date . 12)
 	(:flags . 6)
         (:mailing-list . 10)))
