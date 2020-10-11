@@ -369,15 +369,130 @@
                              (or (mu4e-message-contact-field-matches msg :to addr-lex)
                                  (mu4e-message-contact-field-matches msg :cc addr-lex)))))))
 
-(setq mu4e-contexts
-        `( ,(my-make-mu4e-context "TillGMX" "till.blesik@gmx.de"
-                                  "Mit freundlichen Grüßen,\n Till")
-           ,(my-make-mu4e-context "GMail" "till.blesik@gmail.com"
-                                  "Mit freundlichen Grüßen,\n Till")
-           ,(my-make-mu4e-context "ESCP" "tblesik@escp.eu"
-                                  "Best regards,\n Till")
-	   ,(my-make-mu4e-context "spirit" "ntm.greattfbspirit@gmx.de"
-                                  "")))
+;; (setq mu4e-contexts
+;;         `( ,(my-make-mu4e-context "TillGMX" "till.blesik@gmx.de"
+;;                                   "Mit freundlichen Grüßen,\n Till")
+;;            ,(my-make-mu4e-context "GMail" "till.blesik@gmail.com"
+;;                                   "Mit freundlichen Grüßen,\n Till")
+;;            ,(my-make-mu4e-context "ESCP" "tblesik@escp.eu"
+;;                                   "Best regards,\n Till")
+;; 	   ,(my-make-mu4e-context "spirit" "ntm.greattfbspirit@gmx.de"
+;;                                   "")))
 
-(provide 'init)
+(setq mu4e-contexts
+        `(,(make-mu4e-context
+            :name "Till" ; Is there no way to specify a key for switching?
+            :enter-func (lambda () (mu4e-message "Entering Till"))
+            :match-func
+	    (lambda (msg)
+	      (when msg
+		(or
+		 (mu4e-message-contact-field-matches msg :to (prot/auth-get-field "Till" :user))
+		 (mu4e-message-contact-field-matches msg :cc (prot/auth-get-field "Till" :user))))) 
+            :vars `((user-mail-address . ,(prot/auth-get-field "Till" :user))))
+          ,(make-mu4e-context
+            :name "spirit"
+	    :enter-func (lambda () (mu4e-message "Entering spirit"))
+            :match-funcq
+	    (lambda (msg)
+	      (when msg
+		(or
+		 (mu4e-message-contact-field-matches msg :to (prot/auth-get-field "spirit" :user))
+		 (mu4e-message-contact-field-matches msg :cc (prot/auth-get-field "spirit" :user)))))
+            :vars `((user-mail-address . ,(prot/auth-get-field "spirit" :user))))
+	  ,(make-mu4e-context
+            :name "GMail"
+	    :enter-func (lambda () (mu4e-message "Entering GMail"))
+            :match-func
+	    (lambda (msg)
+	      (when msg
+		(or
+		 (mu4e-message-contact-field-matches msg :to (prot/auth-get-field "GMail" :user))
+		 (mu4e-message-contact-field-matches msg :cc (prot/auth-get-field "GMail" :user)))))
+            :vars `((user-mail-address . ,(prot/auth-get-field "GMail" :user))))
+	  ,(make-mu4e-context
+            :name "ESCP"
+	    :enter-func (lambda () (mu4e-message "Entering ESCP"))
+            :match-func
+	    (lambda (msg)
+	      (when msg
+		(or
+		 (mu4e-message-contact-field-matches msg :to (prot/auth-get-field "ESCP" :user))
+		 (mu4e-message-contact-field-matches msg :cc (prot/auth-get-field "ESCP" :user)))))
+            :vars `((user-mail-address . ,(prot/auth-get-field "ESCP" :user))))))
+
+;; waiting for next ubuntu release to use mu 1.4 syntax
+;; (add-to-list 'mu4e-bookmarks '(
+;;         (:name "Unread messages" :query "flag:unread AND NOT flag:trashed" :key ?u)
+;;         (:name "Today's messages" :query "date:today..now" :key ?t)
+;;         (:name "Last 7 days" :query "date:7d..now" :key ?w)
+;;        (:name "Till Unread" :query ',(format "to:%s %s"
+;;                                 (prot/auth-get-field "Till" :user)
+;;                                 "AND flag:unread AND NOT flag:trashed")
+;;                :key ?T)
+;;         (:name "Till Inbox"
+;;                :query ',(format "to:%s"
+;;                                 (prot/auth-get-field "Till" :user))
+;;                :key ?t)
+;;         (:name "GMail Unread"
+;;                :query ',(format "to:%s %s"
+;;                                 (prot/auth-get-field "GMail" :user)
+;;                                 "AND flag:unread AND NOT flag:trashed")
+;;                :key ?G)
+;;         (:name "GMail Inbox"
+;;                :query ',(format "to:%s"
+;;                                 (prot/auth-get-field "GMail" :user))
+;;                :key ?g)
+;;         (:name "ESCP Unread"
+;;                :query ',(format "to:%s %s"
+;;                                 (prot/auth-get-field "ESCP" :user)
+;;                                 "AND flag:unread AND NOT flag:trashed")
+;;                :key ?E)
+;;         (:name "ESCP Inbox"
+;;                :query ',(format "to:%s"
+;;                                 (prot/auth-get-field "ESCP" :user))
+;;                :key ?e)
+;; 	(:name "spirit Unread"
+;;                :query ',(format "to:%s %s"
+;;                                 (prot/auth-get-field "spirit" :user)
+;; 				"AND flag:unread AND NOT flag:trashed")
+;;                :key ?S)
+;; 	(:name "spirit Inbox"
+;;                :query ',(format "to:%s"
+;;                                 (prot/auth-get-field "spirit" :user))
+;;                :key ?s)
+;; 	;; ))
+
+
+
+(setq mu4e-bookmarks
+      '(
+	("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
+	("date:today..now" "Today's messages" ?d)
+	("date:7d..now" "Last 7 days" ?w)
+	("flag:attach" "Messages with attachment" ?a)
+	((format "to:%s or cc:%s"
+		(prot/auth-get-field "Till" :user)
+		(prot/auth-get-field "Till" :user))
+	"Till"
+	?t)
+      ((format "to:%s or cc:%s"
+	       (prot/auth-get-field "GMail" :user)
+	       (prot/auth-get-field "GMail" :user))
+       "GMail"
+       ?g)
+      ((format "to:%s or cc:%s"
+	       (prot/auth-get-field "ESCP" :user)
+	       (prot/auth-get-field "ESCP" :user))
+       "ESCP"
+       ?e)
+      ((format "to:%s or cc:%s"
+	       (prot/auth-get-field "spirit" :user)
+	       (prot/auth-get-field "spirit" :user))
+       "spirit"
+       ?s)
+      ))
+
+
+(provide 'Inuit)
 ;;;
