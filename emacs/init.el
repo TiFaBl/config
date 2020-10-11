@@ -319,6 +319,24 @@
 ;; https://github.com/tvraman/emacspeak/issues/47
 ;; (load-file "/home/tfb/emacspeak/current/lisp/emacspeak-wizards.el")
 
+;;  generic auth solution
+(use-package auth-source
+  :config
+  (setq auth-sources '("~/.authinfo.gpg"))
+  (setq user-full-name "Till Blesik")
+  (setq user-mail-address "till.blesik@gmx.de")
+
+  (defun prot/auth-get-field (host prop)
+    "Find PROP in `auth-sources' for HOST entry."
+    (let* ((source (auth-source-search :host host))
+           (field (plist-get
+                   (flatten-list source)
+                   prop)))
+      (if source
+          field
+        (user-error "No entry in auth sources")))))
+
+
 ;; mu4e
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 (require 'mu4e)
