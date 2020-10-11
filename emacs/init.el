@@ -209,18 +209,23 @@
 ; turn line numbers on
 ;; (when (version<= "26.0.50" emacs-version )
 ;;   (global-display-line-numbers-mode))
+
 (put 'narrow-to-region 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
+
 ;; let me replace marked regions by just typing
-(setq delete-selection-mode t)
+(delete-selection-mode t)
+
 ;; I want to write right words in text-mode and prog-mode
 (add-hook 'text-mode-hook 'flyspell-mode)
+
 ;; add modes to the prog-mode-hook
 (dolist (mode '(flyspell-prog-mode hs-minor-mode))
   (add-hook 'prog-mode-hook mode))
 (add-hook 'prog-mode-hook
 	  (lambda()
 	    (electric-pair-mode t)))
+
 ;; Make text movable with M-<up> or <down>
 (use-package move-text
   :ensure t
