@@ -15,7 +15,7 @@ sudo apt install i3 gcc make cmake perl r-recommended python3 python3-venv pipen
 # emacs 
 # https://www.gnu.org/software/emacs/manual/html_node/efaq/Installing-Emacs.html
 sudo apt build-deb emacs
-sudo apt install mailutils
+sudo apt install mailutils gnutls-bin
 wget http://ftp.halifax.rwth-aachen.de/gnu/emacs/emacs-27.1.tar.gz
 # TODO adjust script to dynamically download, ./configure, make, sudo make install
 # Emacspeak
