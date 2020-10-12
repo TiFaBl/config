@@ -399,7 +399,12 @@
 		(or
 		 (mu4e-message-contact-field-matches msg :to (prot/auth-get-field "Till" :user))
 		 (mu4e-message-contact-field-matches msg :cc (prot/auth-get-field "Till" :user))))) 
-            :vars `((user-mail-address . ,(prot/auth-get-field "Till" :user))))
+            :vars `( (user-mail-address . ,(prot/auth-get-field "Till" :user))
+		     (mu4e-refile-folder . "/TillGMX/Archives")
+		     (mu4e-sent-folder . "/TillGMX/Sent")
+		     (mu4e-drafts-folder . "/TillGMX/Drafts")
+		     (mu4e-trash-folder . "/TillGMX/Trash")
+		    ))
           ,(make-mu4e-context
             :name "spirit"
 	    :enter-func (lambda () (mu4e-message "Entering spirit"))
@@ -409,7 +414,12 @@
 		(or
 		 (mu4e-message-contact-field-matches msg :to (prot/auth-get-field "spirit" :user))
 		 (mu4e-message-contact-field-matches msg :cc (prot/auth-get-field "spirit" :user)))))
-            :vars `((user-mail-address . ,(prot/auth-get-field "spirit" :user))))
+            :vars `( (user-mail-address . ,(prot/auth-get-field "spirit" :user))
+		     (mu4e-refile-folder . "/spiritGMX/Archives")
+		     (mu4e-sent-folder . "/spiritGMX/Sent")
+		     (mu4e-drafts-folder . "/spiritGMX/Drafts")
+		     (mu4e-trash-folder . "/spiritGMX/Trash")
+		    ))
 	  ,(make-mu4e-context
             :name "GMail"
 	    :enter-func (lambda () (mu4e-message "Entering GMail"))
@@ -419,7 +429,13 @@
 		(or
 		 (mu4e-message-contact-field-matches msg :to (prot/auth-get-field "GMail" :user))
 		 (mu4e-message-contact-field-matches msg :cc (prot/auth-get-field "GMail" :user)))))
-            :vars `((user-mail-address . ,(prot/auth-get-field "GMail" :user))))
+            :vars `( (user-mail-address . ,(prot/auth-get-field "GMail" :user))
+		     ;; GMail stores them automatically, therefore delete once send
+		     (mu4e-sent-messages-behavior . delete)
+		     (mu4e-refile-folder . "/TillGMail/[Gmail]/All Mail")
+		     (mu4e-drafts-folder . "/TillGMail/[Gmail]/Drafts")
+		     (mu4e-trash-folder . "/TillGMail/[Gmail]/Trash")
+					))
 	  ,(make-mu4e-context
             :name "ESCP"
 	    :enter-func (lambda () (mu4e-message "Entering ESCP"))
@@ -429,7 +445,13 @@
 		(or
 		 (mu4e-message-contact-field-matches msg :to (prot/auth-get-field "ESCP" :user))
 		 (mu4e-message-contact-field-matches msg :cc (prot/auth-get-field "ESCP" :user)))))
-            :vars `((user-mail-address . ,(prot/auth-get-field "ESCP" :user))))))
+            :vars `( (user-mail-address . ,(prot/auth-get-field "ESCP" :user))
+		     ;; GMail stores them automatically, therefore delete once send
+		     (mu4e-sent-messages-behavior . delete)
+		     (mu4e-refile-folder . "/TillESCP/[Gmail]/All Mail")
+		     (mu4e-drafts-folder . "/TillESCP/[Gmail]/Drafts")
+		     (mu4e-trash-folder . "/TillESCP/[Gmail]/Trash")
+		     ))))
 
 ;; waiting for next ubuntu release to use mu 1.4 syntax
 ;; (add-to-list 'mu4e-bookmarks '(
@@ -503,6 +525,32 @@
        ?s)
       ))
 
+(setq message-send-mail-function 'message-send-mail-with-sendmail
+      sendmail-program "/usr/bin/msmtp"
+      user-full-name "Till Blesik")
+
+ ;; Choose account label to feed msmtp -a option based on From header  
+;; in Message buffer; This function must be added to  
+;; message-send-mail-hook for on-the-fly change of From address before  
+;; sending message since message-send-mail-hook is processed right  
+;; before sending message.  
+(defun choose-msmtp-account ()  
+  (if (message-mail-p)
+      (save-excursion
+  	(let*
+  	    ((from (save-restriction  
+  		     (message-narrow-to-headers)  
+  		     (message-fetch-field "from")))  
+  	     (account
+  	      (cond
+  	       ((string-match "till.blesik@gmx.de" from) "Till")
+	       ((string-match "ntm.greattfbspirit@gmx.de" from) "spirit")
+	       ((string-match "tblesik@escp.eu" from) "ESCP")
+  	       ((string-match "till.blesik@gmail.com" from) "GMail"))))
+ 	  (setq message-sendmail-extra-arguments (list '"-a" account))))))
+
+(setq message-sendmail-envelope-from 'header)
+(add-hook 'message-send-mail-hook 'choose-msmtp-account)
 
 (provide 'Inuit)
 ;;;
