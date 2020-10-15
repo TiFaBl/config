@@ -250,6 +250,8 @@
 ;; orgmode bindings
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
+(with-eval-after-load 'org
+  (bind-key "C-c h" #'org-toggle-heading org-mode-map))
 
 ;; bindings for german layout
 (global-set-key (kbd "M-+") 'backward-paragraph)
