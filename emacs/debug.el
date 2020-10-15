@@ -1,5 +1,5 @@
 (toggle-debug-on-error t)
-(load-file "/home/tfb/emacspeak/lisp/emacspeak-setup.el")
+(load-file "/home/tfb/emacspeak/current/lisp/emacspeak-setup.el")
 
 (require 'package)
 ;; (add-to-list 'package-archives
