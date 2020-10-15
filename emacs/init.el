@@ -4,13 +4,15 @@
 ;;, this will be moved to literate soon
 ;;; Code:
 
-(load-file "/home/tfb/emacspeak/r52/lisp/emacspeak-setup.el")
-;; (load-file "/home/tfb/emacspeak/current/lisp/emacspeak-setup.el")
+;; (load-file "/home/tfb/emacspeak/r52/lisp/emacspeak-setup.el")
+(load-file "/home/tfb/emacspeak/current/lisp/emacspeak-setup.el")
 (dtk-set-rate 275)
 
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives
+	     '("org" . "https://orgmode.org/elpa/") t)
 ;; (package-initialize)
 ;; refresh manually to avoid waiting time at every startup
 (package-refresh-contents)
