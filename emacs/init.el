@@ -96,32 +96,35 @@
 ;;org
 (use-package org
   :ensure t
+  :init
+
+  ;; Config org variables
+  (setq org-directory "~/org/")
+  (setq org-agenda-files '("~/org/"))
+  (setq org-hierarchical-todo-statistics nil)
+  (setq org-refile-targets '((org-agenda-files . (:maxlevel . 3))))
+  (setq org-default-notes-file (concat org-directory "/capture.org"))
+  (setq org-refile-use-outline-path 'file)
+  (setq org-outline-path-complete-in-steps nil)
+  (add-hook 'org-mode-hook 'org-indent-mode)
+
+  ;; config todo keyworda
+  (setq org-todo-keywords
+	'(
+          (sequence "IDEA(i)" "TODO(t)" "|" "STRT(s)" "WAIT(w)" "|" "DONE(!d)")
+          (sequence "|" "CANCELED(c@)" "DELEGATED(l@)" "SOMEDAY(f)")
+          ))
+
+  ;; set faces for keywords
+  (setq org-todo-keyword-faces
+	'(("IDEA" . (:foreground "GoldenRod" :weight bold))
+          ("STRT" . (:foreground "OrangeRed" :weight bold))
+          ("WAIT" . (:foreground "coral" :weight bold))
+          ("CANCELED" . (:foreground "LimeGreen" :weight bold))
+          ("DELEGATED" . (:foreground "LimeGreen" :weight bold))
+          ("SOMEDAY" . (:foreground "LimeGreen" :weight bold))
+          ))
   )
-
-
-(setq org-directory "~/org/")
-(setq org-agenda-files '("~/org/"))
-(setq org-hierarchical-todo-statistics nil)
-(setq org-refile-targets '((org-agenda-files . (:maxlevel . 3))))
-(setq org-default-notes-file (concat org-directory "/capture.org"))
-(setq org-refile-use-outline-path 'file)
-(setq org-outline-path-complete-in-steps nil)
-
-
-(setq org-todo-keywords
-      '(
-        (sequence "IDEA(i)" "TODO(t)" "|" "STRT(s)" "WAIT(w)" "|" "DONE(!d)")
-        (sequence "|" "CANCELED(c@)" "DELEGATED(l@)" "SOMEDAY(f)")
-        ))
-
-(setq org-todo-keyword-faces
-      '(("IDEA" . (:foreground "GoldenRod" :weight bold))
-        ("STRT" . (:foreground "OrangeRed" :weight bold))
-        ("WAIT" . (:foreground "coral" :weight bold))
-        ("CANCELED" . (:foreground "LimeGreen" :weight bold))
-        ("DELEGATED" . (:foreground "LimeGreen" :weight bold))
-        ("SOMEDAY" . (:foreground "LimeGreen" :weight bold))
-        ))
 
 ;; ;; and some evil-org to go along with it
 ;; ;; for config inspiration, go to https://github.com/Somelauw/evil-org-mode/blob/master/doc/example_config.el
