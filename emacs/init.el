@@ -344,7 +344,7 @@
   :bind (:map company-active-map
 	      ("C-c d" . company-quickhelp-manual-begin))
   :config
-  (company-quickhelp-mode 1))
+  (company-quickhelp-mode t))
 
 ;; Correction
 (use-package flyspell-correct
