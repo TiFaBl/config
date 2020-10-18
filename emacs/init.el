@@ -270,6 +270,7 @@
 ;; bindings for german layout
 (global-set-key (kbd "M-+") 'backward-paragraph)
 (global-set-key (kbd "M-#") 'forward-paragraph)
+(global-set-key (kbd "M-j") 'imenu)
 
 ;; provide tools on my tools kdymap
 (define-key tools-map (kbd "e") 'eww)
