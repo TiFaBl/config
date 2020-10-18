@@ -34,7 +34,7 @@
  '(gc-cons-threshold 20000000)
  '(org-hierarchical-todo-statistics nil)
  '(package-selected-packages
-   '(org auth-source vterm move-text expand-region org-bullets company-quickhelp ess flyspell-correct-ido flyspell-correct ido evil-collection flx-ido smex helpful ido-completing-read+ all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))
+   '(powerline org auth-source vterm move-text expand-region org-bullets company-quickhelp ess flyspell-correct-ido flyspell-correct ido evil-collection flx-ido smex helpful ido-completing-read+ all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))
  '(sentence-end-double-space nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -69,10 +69,17 @@
 (load-theme 'deeper-blue t)
 ;; Pretty icons
 (use-package all-the-icons)
-;; Use DOOM modeline to prettify it a bit
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1))
+
+;; use powerline to replace default modeline
+(use-package powerline
+  :init
+  (powerline-default-theme)
+  )
+
+;; ;; Use DOOM modeline to prettify it a bit
+;; (use-package doom-modeline
+;;   :ensure t
+;;   :init (doom-modeline-mode 1))
 
 ;; which-key to display the options for keys/chords
  (use-package which-key
@@ -85,32 +92,35 @@
 ;;org
 (use-package org
   :ensure t
+  :init
+
+  ;; Config org variables
+  (setq org-directory "~/org/")
+  (setq org-agenda-files '("~/org/"))
+  (setq org-hierarchical-todo-statistics nil)
+  (setq org-refile-targets '((org-agenda-files . (:maxlevel . 3))))
+  (setq org-default-notes-file (concat org-directory "/capture.org"))
+  (setq org-refile-use-outline-path 'file)
+  (setq org-outline-path-complete-in-steps nil)
+  (add-hook 'org-mode-hook 'org-indent-mode)
+
+  ;; config todo keyworda
+  (setq org-todo-keywords
+	'(
+          (sequence "IDEA(i)" "TODO(t)" "|" "STRT(s)" "WAIT(w)" "|" "DONE(!d)")
+          (sequence "|" "CANCELED(c@)" "DELEGATED(l@)" "SOMEDAY(f)")
+          ))
+
+  ;; set faces for keywords
+  (setq org-todo-keyword-faces
+	'(("IDEA" . (:foreground "GoldenRod" :weight bold))
+          ("STRT" . (:foreground "OrangeRed" :weight bold))
+          ("WAIT" . (:foreground "coral" :weight bold))
+          ("CANCELED" . (:foreground "LimeGreen" :weight bold))
+          ("DELEGATED" . (:foreground "LimeGreen" :weight bold))
+          ("SOMEDAY" . (:foreground "LimeGreen" :weight bold))
+          ))
   )
-
-
-(setq org-directory "~/org/")
-(setq org-agenda-files '("~/org/"))
-(setq org-hierarchical-todo-statistics nil)
-(setq org-refile-targets '((org-agenda-files . (:maxlevel . 3))))
-(setq org-default-notes-file (concat org-directory "/capture.org"))
-(setq org-refile-use-outline-path 'file)
-(setq org-outline-path-complete-in-steps nil)
-
-
-(setq org-todo-keywords
-      '(
-        (sequence "IDEA(i)" "TODO(t)" "|" "STRT(s)" "WAIT(w)" "|" "DONE(!d)")
-        (sequence "|" "CANCELED(c@)" "DELEGATED(l@)" "SOMEDAY(f)")
-        ))
-
-(setq org-todo-keyword-faces
-      '(("IDEA" . (:foreground "GoldenRod" :weight bold))
-        ("STRT" . (:foreground "OrangeRed" :weight bold))
-        ("WAIT" . (:foreground "coral" :weight bold))
-        ("CANCELED" . (:foreground "LimeGreen" :weight bold))
-        ("DELEGATED" . (:foreground "LimeGreen" :weight bold))
-        ("SOMEDAY" . (:foreground "LimeGreen" :weight bold))
-        ))
 
 ;; ;; and some evil-org to go along with it
 ;; ;; for config inspiration, go to https://github.com/Somelauw/evil-org-mode/blob/master/doc/example_config.el
