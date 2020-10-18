@@ -59,14 +59,18 @@
     (scroll-bar-mode -1))
 (when (fboundp 'horizontal-scroll-bar-mode)
   (horizontal-scroll-bar-mode -1))
+
 ;; Windmove is built into Emacs. It lets you move point from window to window using Shift and the arrow keys.
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
+
 ;; Make window configuration undo'able
 (when (fboundp 'winner-mode)
   (winner-mode 1))
+
 ;; Theme
 (load-theme 'deeper-blue t)
+
 ;; Pretty icons
 (use-package all-the-icons)
 
