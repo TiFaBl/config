@@ -13,6 +13,8 @@
              '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives
 	     '("org" . "https://orgmode.org/elpa/") t)
+(add-to-list 'package-archives
+	     '("gnu" . "http://elpa.gnu.org/packages/"))
 ;; (package-initialize)
 ;; refresh manually to avoid waiting time at every startup
 (package-refresh-contents)
