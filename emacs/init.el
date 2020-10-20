@@ -106,9 +106,23 @@
   (setq org-hierarchical-todo-statistics nil)
   (setq org-refile-targets '((org-agenda-files . (:maxlevel . 3))))
   (setq org-default-notes-file (concat org-directory "/capture.org"))
+  (setq org-catch-invisible-edits 'show-and-error)
   (setq org-refile-use-outline-path 'file)
-  (setq org-outline-path-complete-in-steps nil)
+  (setq org-outline-path-complete-in-steps 't)
+  (setq org-goto-interface 'outline-path-completion
+        org-goto-max-level 2)
   (add-hook 'org-mode-hook 'org-indent-mode)
+
+  ;; Load languages for babel
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '(
+     (python . t)
+     (latex . t)
+     (R . t)
+     (shell . t)
+     (emacs-lisp . t)
+     ))
 
   ;; config todo keyworda
   (setq org-todo-keywords
@@ -126,8 +140,8 @@
           ("DELEGATED" . (:foreground "LimeGreen" :weight bold))
           ("SOMEDAY" . (:foreground "LimeGreen" :weight bold))
           ))
-  )
 
+  )
 ;; ;; and some evil-org to go along with it
 ;; ;; for config inspiration, go to https://github.com/Somelauw/evil-org-mode/blob/master/doc/example_config.el
 ;; (use-package evil-org
@@ -272,7 +286,10 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
 (with-eval-after-load 'org
-  (bind-key "C-c h" #'org-toggle-heading org-mode-map))
+  (bind-key "C-c h" #'org-toggle-heading org-mode-map)
+  (bind-key "C-c ä" #'org-mark-subtree org-mode-map)
+  (bind-key "C-#" #'er/expand-region org-mode-map)
+  )
 
 ;; bindings for german layout
 (global-set-key (kbd "M-+") 'backward-paragraph)
