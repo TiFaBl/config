@@ -302,6 +302,7 @@
 (define-key tools-map (kbd "m") 'mu4e)
 (define-key tools-map (kbd "n") 'gnus)
 (define-key tools-map (kbd "s") 'eshell)
+(define-key tools-map (kbd "d") 'dired)
 
 ;; timing not right, therefore moved to projectile load
 ;; (with-eval-after-load 'projectile
