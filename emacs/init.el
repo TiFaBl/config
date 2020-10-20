@@ -326,17 +326,15 @@
   :bind ("M-x" . smex))
 
 ;; Completion
-(use-package ido
-  :ensure t
-  :config
-  (setq ido-enable-prefix nil
-	ido-enable-flex-matching t
-	ido-create-new-buffer 'always
-	ido-use-filename-at-point 'guess
-	ido-max-prospects 4
-	ido-default-file-method 'selected-window
-	ido-auto-merge-work-directories-length nil)
-  (ido-mode 1))
+(require 'ido)
+(setq ido-enable-prefix nil
+      ido-enable-flex-matching t
+      ido-create-new-buffer 'always
+      ido-use-filename-at-point 'guess
+      ido-max-prospects 4
+      ido-default-file-method 'selected-window
+      ido-auto-merge-work-directories-length nil)
+(ido-mode 1)
 
 (use-package ido-completing-read+
   :ensure t
