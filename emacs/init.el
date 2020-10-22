@@ -307,6 +307,7 @@
 (define-key tools-map (kbd "n") 'gnus)
 (define-key tools-map (kbd "s") 'eshell)
 (define-key tools-map (kbd "d") 'dired)
+(define-key tools-map (kbd "y") 'yas-insert-snippet)
 
 ;; timing not right, therefore moved to projectile load
 ;; (with-eval-after-load 'projectile
@@ -383,6 +384,9 @@
 ;; Hopefully a temporary fix to avoid the missing emacspeak-handle-action-at-point issue
 ;; https://github.com/tvraman/emacspeak/issues/47
 ;; (load-file "/home/tfb/emacspeak/current/lisp/emacspeak-wizards.el")
+
+(use-package yasnippet-snippets
+  :ensure t)
 
 ;;  generic auth solution
 (require 'auth-source)
