@@ -123,6 +123,10 @@
      (shell . t)
      (emacs-lisp . t)
      ))
+  ;; Syntax highlight in #+BEGIN_SRC blocks
+  (setq org-src-fontify-natively t)
+  ;; Don't prompt before running code in org
+  (setq org-confirm-babel-evaluate nil)
 
   ;; config todo keyworda
   (setq org-todo-keywords
