@@ -561,12 +561,12 @@
 	("date:today..now" "Today's messages" ?d)
 	("date:7d..now" "Last 7 days" ?w)
 	("flag:attach" "Messages with attachment" ?a)
-	((format "to:%s or cc:%s"
+	((format "(to:%s or cc:%s) AND NOT flag:trashed AND NOT maildir:/TillGMX/Archives"
 		(prot/auth-get-field "Till" :user)
 		(prot/auth-get-field "Till" :user))
 	"Till"
 	?t)
-      ((format "to:%s or cc:%s"
+      ((format "(to:%s or cc:%s) AND NOT flag:trashed AND NOT maildir:\"/TillGMail/[Gmail]/All Mail\""
 	       (prot/auth-get-field "GMail" :user)
 	       (prot/auth-get-field "GMail" :user))
        "GMail"
