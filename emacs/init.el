@@ -414,6 +414,8 @@
 (setq mu4e-get-mail-command "mbsync -a")
 (setq mu4e-update-interval 300)
 (setq mu4e-context-policy 'pick-first)
+(setq mu4e-view-use-gnus t)
+(setq mu4e-hide-index-messages t)
 (setq mu4e-headers-fields
       '((:from . 22)
 	(:subject . 60)
