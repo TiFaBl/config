@@ -36,7 +36,7 @@
  '(gc-cons-threshold 20000000)
  '(org-hierarchical-todo-statistics nil)
  '(package-selected-packages
-   '(yasnippet-snippets restclient powerline org auth-source vterm move-text expand-region org-bullets company-quickhelp ess flyspell-correct-ido flyspell-correct ido evil-collection flx-ido smex helpful ido-completing-read+ all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))
+   '(erc yasnippet-snippets restclient powerline org auth-source vterm move-text expand-region org-bullets company-quickhelp ess flyspell-correct-ido flyspell-correct ido evil-collection flx-ido smex helpful ido-completing-read+ all-the-icons doom-modeline projectile evil-org flycheck which-key magit solarized-theme elpy evil use-package))
  '(sentence-end-double-space nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -303,6 +303,7 @@
 ;; provide tools on my tools kdymap
 (define-key tools-map (kbd "e") 'eww)
 (define-key tools-map (kbd "g") 'magit)
+(define-key tools-map (kbd "i") 'erc)
 (define-key tools-map (kbd "m") 'mu4e)
 (define-key tools-map (kbd "n") 'gnus)
 (define-key tools-map (kbd "s") 'eshell)
@@ -609,6 +610,22 @@
 
 (setq message-sendmail-envelope-from 'header)
 (add-hook 'message-send-mail-hook 'choose-msmtp-account)
+
+
+
+;; IRC with erc and tls
+(require 'tls)
+(require 'erc)
+(setq erc-autojoin-channels-alist
+   '(
+     ("freenode.net" "#emacs" "#ubuntu" "#qtile" "#erc" "#python" "#i3")
+     ))
+(setq erc-autojoin-timing 'ident)
+(setq erc-fill-function 'erc-fill-static)
+(setq erc-fill-static-center 22)
+(setq erc-hide-list '("JOIN" "PART" "QUIT"))
+(setq erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
+(setq erc-lurker-threshold-time 43200)
 
 (provide 'init)
 ;;;
