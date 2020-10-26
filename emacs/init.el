@@ -618,16 +618,83 @@
 ;; IRC with erc and tls
 (require 'tls)
 (require 'erc)
+
+;; Appears to be deprecated
+;; (setq tls-program '(
+;; 		    "openssl s_client -connect %h:%p -no_ssl2 -ign_eof
+;;  -CAfile /etc/ssl/certs/ca-certificates.crt
+;;  -cert /home/tfb/.ssl/tfb.pem"
+;; 		    "gnutls-cli --priority secure256
+;;  --x509cafile /etc/ssl/certs/ca-certificates.crt
+;;  --x509certfile /home/tfb/.ssl/tfb.pem -p %p %h"
+;; 		    "gnutls-cli --priority secure256 -p %p %h"))
+
+
+;; see https://www.emacswiki.org/emacs/ErcSSL at the bottom
+;; https://freenode.net/kb/answer/certfp and https://www.oftc.net/NickServ/CertFP/ for introductions to use personal certs
+(with-eval-after-load 'erc
+  
+    ;; erc hack for gnutls for client cert.
+    (defvar *uconf/erc-certs* nil
+      "erc client certs used by gnutls package for :keylist.")
+
+  
+    ;; copied from the gnutls lib but set :keylist to client certs.
+    ;; this function is called from `open-network-stream' with :type tls.
+    (defun uconf/open-gnutls-stream (name buffer host service &optional nowait)
+      (let ((process (open-network-stream
+                      name buffer host service
+                      :nowait nowait
+                      :tls-parameters
+                      (and nowait
+                           (cons 'gnutls-x509pki
+                                 (gnutls-boot-parameters
+                                  :type 'gnutls-x509pki
+                                  :keylist *uconf/erc-certs* ;;added parameter to pass the cert.
+                                  :hostname (puny-encode-domain host)))))))
+        (if nowait
+            process
+          (gnutls-negotiate :process process
+                            :type 'gnutls-x509pki
+                            :keylist *uconf/erc-certs* ;;added parameter to pass the cert.
+                            :hostname (puny-encode-domain host)))))
+  
+    ;; only set the global variable when used from `erc-tls'.
+    (defun uconf/erc-open-tls-stream (name buffer host port)
+      (unwind-protect
+          (progn
+            (setq *uconf/erc-certs*
+                  '(("/home/tfb/.ssl/tfb.key" "/home/tfb/.ssl/tfb.cer")))
+            (open-network-stream name buffer host port
+                                 :nowait t
+                                 :type 'tls))
+        (setq *uconf/erc-certs* nil)))
+  
+    (advice-add 'open-gnutls-stream :override #'uconf/open-gnutls-stream)
+    (advice-add 'erc-open-tls-stream :override #'uconf/erc-open-tls-stream)
+    )
+
+
+;; Autojoin some channels
 (setq erc-autojoin-channels-alist
    '(
-     ("freenode.net" "#emacs" "#ubuntu" "#qtile" "#erc" "#python" "#i3")
+     ("freenode.net" "#emacs" "#ubuntu" "#erc" "#python" "#i3")
+     ("oftc.net" "#qtile")
      ))
+
 (setq erc-autojoin-timing 'ident)
 (setq erc-fill-function 'erc-fill-static)
 (setq erc-fill-static-center 22)
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 (setq erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
 (setq erc-lurker-threshold-time 43200)
+
+
+(erc-tls :server "irc.freenode.net" :port 6697
+	 :nick "till_b" :full-name "Till")
+
+(erc-tls :server "irc.oftc.net" :port 6697
+	 :nick "tfb" :full-name "Till")
 
 (provide 'init)
 ;;;
