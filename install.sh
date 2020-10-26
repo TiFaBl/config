@@ -29,7 +29,7 @@ export DTK_PROGRAM=espeak
 sudo apt install maildir-utils
 mu index --maildir=~/.mail
 # Potentially the better command with version 1.4
-# mu init --maildir=~/ --my-address=till.blesik@gmx.de --my-address=till.blesik@gmail.com --my-address=tblesik@escpeurope.eu --my-address=tblesik@escp.eu --my-address=ntm.greattfbspirit@gmx.de
+# mu init --maildir=~/.mail --my-address=till.blesik@gmx.de --my-address=till.blesik@gmail.com --my-address=tblesik@escpeurope.eu --my-address=tblesik@escp.eu --my-address=ntm.greattfbspirit@gmx.de
 
 # cleanup
 sudo apt autoremove
