@@ -387,7 +387,10 @@
 ;; (load-file "/home/tfb/emacspeak/current/lisp/emacspeak-wizards.el")
 
 (use-package yasnippet-snippets
-  :ensure t)
+  :ensure t
+  :config
+  (yas-global-mode)
+  )
 
 ;;  generic auth solution
 (require 'auth-source)
