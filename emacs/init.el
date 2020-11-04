@@ -6,7 +6,7 @@
 
 ;; (load-file "/home/tfb/emacspeak/r52/lisp/emacspeak-setup.el")
 (load-file "/home/tfb/emacspeak/current/lisp/emacspeak-setup.el")
-(dtk-set-rate 275)
+(dtk-set-rate 300)
 
 (require 'package)
 (add-to-list 'package-archives
