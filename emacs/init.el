@@ -307,13 +307,14 @@
 (global-set-key (kbd "M-j") 'imenu)
 
 ;; provide tools on my tools kdymap
-(define-key tools-map (kbd "e") 'eww)
+(define-key tools-map (kbd "d") 'docker)
+(define-key tools-map (kbd "f") 'dired)
 (define-key tools-map (kbd "g") 'magit)
 (define-key tools-map (kbd "i") 'erc)
 (define-key tools-map (kbd "m") 'mu4e)
 (define-key tools-map (kbd "n") 'gnus)
 (define-key tools-map (kbd "s") 'eshell)
-(define-key tools-map (kbd "d") 'dired)
+(define-key tools-map (kbd "w") 'eww)
 (define-key tools-map (kbd "y") 'yas-insert-snippet)
 
 ;; timing not right, therefore moved to projectile load
