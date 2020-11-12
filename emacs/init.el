@@ -360,8 +360,8 @@
   :ensure t
   :config
   (flx-ido-mode 1)
-  ;; disable ido faces to see flx highlights
-  (setq ido-use-faces nil))
+  ;; disable ido faces to see flx highlights, but they complicate understanding them when read by emacspeak
+  (setq ido-use-faces t))
 
 (use-package company
   :bind ( ("M-<tab>" . company-select-next)
