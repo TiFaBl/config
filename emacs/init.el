@@ -292,6 +292,8 @@
 (global-set-key (kbd "<f6>") 'other-window)
 ;; Make ESC quit stuff
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+;; switch list-buffers to ibuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 ;; orgmode bindings
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
