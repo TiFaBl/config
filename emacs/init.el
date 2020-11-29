@@ -422,6 +422,7 @@
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 (require 'mu4e)
 (setq mu4e-change-filenames-when-moving t)
+(setq message-kill-buffer-on-exit t)
 (setq mu4e-maildir "~/.mail")
 (setq mu4e-get-mail-command "mbsync -a")
 (setq mu4e-update-interval 300)
