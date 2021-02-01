@@ -291,7 +291,7 @@
 ;; Make F6 cycle through windows (in accordance to Windows and Office) while having emacspeak tell the names
 (global-set-key (kbd "<f6>") 'other-window)
 ;; Make ESC quit stuff
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+;; (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 ;; switch list-buffers to ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 ;; orgmode bindings
