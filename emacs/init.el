@@ -45,6 +45,9 @@
  ;; If there is more than one, they won't work right.
  )
 
+;; activate truncate lines
+(setq truncate-lines nil)
+
 ;;use larger font
 (set-face-attribute 'default nil :height 140)
 
