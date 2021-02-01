@@ -701,7 +701,7 @@
      ))
 
 (setq erc-autojoin-timing 'ident)
-;; (setq erc-fill-function 'erc-fill-static)
+(setq erc-fill-function nil)
 ;; (setq erc-fill-static-center 22)
 ;; (setq erc-timestamp-format "[%H:%M] ")
 ;; (setq erc-fill-prefix "      + ")
