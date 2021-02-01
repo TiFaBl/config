@@ -716,5 +716,9 @@
 (erc-tls :server "irc.oftc.net" :port 6697
 	 :nick "tfb" :full-name "Till")
 
+;; Twitter
+(add-to-list 'load-path "/home/tfb/.emacs.d/my_modes/twittering-mode")
+(require 'twittering-mode)
+
 (provide 'init)
 ;;;
